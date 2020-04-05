@@ -51,7 +51,7 @@ export class EditForm extends Component {
 const mstp = state =>{
     
     return{
-        accounts :state.accountReducer
+        accounts :state.accountReducer.accounts
     }
 }
 export default connect(mstp, {editAccount})(EditForm)

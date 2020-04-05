@@ -4,8 +4,8 @@ const initialState = {
 }
 const accountReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_ACCOUNT':
-            return [action.payload, ...state]
+        // case 'ADD_ACCOUNT':
+        //     return [action.payload, ...state]
 
         case 'EDIT_ACCOUNT':
             let newAccounts = state.map(item=>{

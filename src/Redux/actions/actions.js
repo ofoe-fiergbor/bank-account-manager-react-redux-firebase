@@ -12,24 +12,28 @@ export const addAccount = account =>{
     }
 }
 
-// export const addAccount = (account)=>{
-//    return{
-//     type: 'ADD_ACCOUNT',
-//     payload:account
-//    }
-// }
+
 
 export const editAccount = account =>{
-    return{
-        type:'EDIT_ACCOUNT',
-        payload:account
+    return async(dispatch, getState,{getFirestore})=>{
+        const firestore = getFirestore()
+        try{
+            await firestore.collection('accounts').doc(account.id).update(account)
+        } catch (err){
+            console.log(err)
+        }
     }
 }
 export const deleteAccount = id =>{
-    return{
-        type:'DELETE_ACCOUNT',
-        payload:id
-    }
+   return async(dispatch, getState,{getFirestore})=>{
+       const firestore = getFirestore()
+       console.log(firestore)
+       try{
+           await firestore.collection('accounts').doc(id).delete()
+       }catch (err){
+           console.log(err)
+       }
+   }
 }
 
 export const getAllAccounts =()=>{
