@@ -1,10 +1,7 @@
-const initialState = [
-    { accountName: 'Major Expense Account', accountNumber: '0087557890973', bankName: 'ABSA', bankBranch: 'High Street', id: '9876g' },
-    { accountName: 'Minor Expense Account', accountNumber: '0085557890973', bankName: 'EcoBanl', bankBranch: 'Tesano', id: '9976g' },
-    { accountName: 'Project Expense Account', accountNumber: '0087557890973', bankName: 'ABSA', bankBranch: 'High Street', id: '9556g' },
-    { accountName: 'Fixed Expense Account', accountNumber: '0087557890973', bankName: 'Standard Chartered', bankBranch: 'James Town', id: '9126g' },
-]
-
+const initialState = {
+    accounts:[],
+    isLoading: true
+}
 const accountReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_ACCOUNT':
@@ -24,6 +21,11 @@ const accountReducer = (state = initialState, action) => {
                 return item.id!==action.payload
             })
             return accounts;
+        case 'UPDATE_ALL_ACCOUNTS':
+            return{
+                accounts: action.payload,
+                isLoading: false
+            }
 
         default:
             return state;
