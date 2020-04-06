@@ -16,7 +16,7 @@ code {
 
 header {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   background-color: rgb(88, 81, 81);
   color: aliceblue;
   height: 9vh;
@@ -29,7 +29,7 @@ header {
 
 }
 
-#nav-link1 {
+#nav-link1,#nav-link3,#nav-link4 {
   margin-right: 10em;
   color: aliceblue;
   text-decoration: none;
@@ -38,6 +38,7 @@ header {
 #nav-link2 {
   color: aliceblue;
   text-decoration: none;
+  margin-right: 19em;
 }
 
 .form_cus {
@@ -73,6 +74,25 @@ tbody{
 }
 #delete{
   cursor: pointer;
+}
+.bc1{
+  display: flex;
+  justify-content: center;
+}
+.btnc2{
+  background-color: rgb(160, 5, 5);
+
+}
+.red{
+  color: red;
+
+}
+
+.nl{
+  display: flex;
+  position: absolute;
+  left: 60%;
+  top: 2.5%;
 }
 
 .loadPosition{

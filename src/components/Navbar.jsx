@@ -1,28 +1,36 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import LoggedInLinks from './LoggedInLinks'
+import LoggedOutLinks from './LoggedOutLinks'
 
 export class Navbar extends Component {
+
     render() {
+        const {auth} = this.props
+        
+        const link = (auth.uid) ? <LoggedInLinks/> : <LoggedOutLinks/>
+
         return (
             <header>
                 <div>
-                    <h1>Bank Account Manager</h1>
-                </div>
-                <div className="nav">
                     <div>
-                        <Link to='/' id='nav-link1'>
-                            <h3>Home</h3>
-                        </Link>
+                        <h1>Bank Account Manager</h1>
                     </div>
-                    <div >
-                        <Link to='/addform' id='nav-link2'>
-                            <h3> Add New Account</h3>
-                        </Link>
+                    <div>
+                        {link}
                     </div>
                 </div>
             </header>
         )
     }
 }
+const mstp = state => {
+    console.log(state);
+    return {
+        auth: state.firebase.auth
+    }
+}
 
-export default Navbar
+
+export default connect(mstp)(Navbar)
