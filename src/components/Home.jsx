@@ -13,11 +13,12 @@ export class Home extends Component {
         this.props.getAllAccounts()
     }
     render() {
-        const {auth} =this.props;
+        const {auth, profile} =this.props;
         if(!auth.uid) return <Redirect to='/login'/>
 
         return (
             <div>
+                <h2 className='howdy'>Howdy, {profile.firstName} !</h2>
                 <table className='table table-striped tableCus' >
                     <thead>
                         <tr>
@@ -29,8 +30,9 @@ export class Home extends Component {
                             <th>Delete</th>
                         </tr>
                     </thead>
+                    {this.props.isLoading && <div className="loader loadPosition">Loading...</div>}
                     <tbody>
-                        {this.props.isLoading && <div className="loader loadPosition">Loading...</div>}
+                        
                         {
                             this.props.accounts.map((account) => {
                                 return (
@@ -61,7 +63,8 @@ const mapStateToProps = state => {
     return {
         accounts: state.accountReducer.accounts,
         isLoading: state.accountReducer.isLoading,
-        auth:state.firebase.auth
+        auth:state.firebase.auth,
+        profile: state.firebase.profile
     }
 }
 export default connect(mapStateToProps, {deleteAccount, getAllAccounts})(Home)

@@ -19,7 +19,7 @@ export class LogIn extends Component {
         return (
             <form className='form_cus' onSubmit={this.handleSubmit}>
                 <div className='red text-center'>
-                        {authError? authError: null}
+                        {authError? <p>{authError}</p>: null}
                     </div>
                 <div className="form-group">
                     <label >Email address</label>

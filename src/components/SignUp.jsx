@@ -16,7 +16,7 @@ export class SignUp extends Component {
     }
 
     render() {
-        const { auth } = this.props
+        const { auth, authError } = this.props
         if (auth.uid) return <Redirect to='/' />
         return (
             <div>
@@ -39,6 +39,7 @@ export class SignUp extends Component {
                     </div>
                     <div>
                         <center><button type="submit" className="btn btn-default btnCus">Sign Up</button></center>
+                        {authError? <p className='red'>{authError}</p>: null}
                     </div>
                 </form>
                 <center><button className="btn btn-default btnCus btnc2 ">SignUp With Google</button></center>
@@ -48,7 +49,8 @@ export class SignUp extends Component {
 }
 const mstp = state => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        authError: state.auth.authError
     }
 }
 

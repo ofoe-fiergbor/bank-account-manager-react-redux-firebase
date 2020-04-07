@@ -87,7 +87,10 @@ tbody{
   color: red;
 
 }
-
+.howdy{
+  margin-left: 5%;
+  font-weight: bold;
+}
 .nl{
   display: flex;
   position: absolute;
