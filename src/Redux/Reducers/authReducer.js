@@ -19,6 +19,18 @@ const initialState ={
         case 'SIGN_OUT_SUCCESS':
             console.log('sign out success')
             return state
+        case 'SIGNUP_SUCCESS':
+            console.log('signup success')
+            return{
+                ...state,
+                authError:null
+            }
+        case 'SIGNUP_FAIL':
+            console.log('sign up fail')
+            return{
+                ...state,
+                authError: action.err.message
+            }
         default:
             return state
     }

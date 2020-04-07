@@ -13,7 +13,6 @@ export const addAccount = account =>{
 }
 
 
-
 export const editAccount = account =>{
     return async(dispatch, getState,{getFirestore})=>{
         const firestore = getFirestore()
@@ -54,4 +53,5 @@ export const getAllAccounts =()=>{
         })
     }
 }
+
 
