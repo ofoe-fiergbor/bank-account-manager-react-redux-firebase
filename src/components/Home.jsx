@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import {deleteAccount, getAllAccounts} from '../Redux/actions/actions'
 
 
@@ -13,6 +13,9 @@ export class Home extends Component {
         this.props.getAllAccounts()
     }
     render() {
+        const {auth} =this.props;
+        if(!auth.uid) return <Redirect to='/login'/>
+
         return (
             <div>
                 <table className='table table-striped tableCus' >
@@ -57,7 +60,8 @@ const mapStateToProps = state => {
     // console.log(state);
     return {
         accounts: state.accountReducer.accounts,
-        isLoading: state.accountReducer.isLoading
+        isLoading: state.accountReducer.isLoading,
+        auth:state.firebase.auth
     }
 }
 export default connect(mapStateToProps, {deleteAccount, getAllAccounts})(Home)

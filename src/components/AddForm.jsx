@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {addAccount} from '../Redux/actions/actions'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 
 export class AddForm extends Component {
@@ -18,6 +19,10 @@ export class AddForm extends Component {
         this.props.history.push('/')
     }
     render() {
+        const {auth} = this.props;
+        
+        if(!auth.uid) return <Redirect to='/login'/>
+
         return (
             <form className='form_cus' onSubmit={this.addAccount}>
                 <div>
@@ -44,4 +49,11 @@ export class AddForm extends Component {
     }
 }
 
-export default connect(null, {addAccount})(AddForm)
+const mstp = (state) =>{
+    return {
+        auth:state.firebase.auth
+    }
+}
+
+
+export default connect(mstp, {addAccount})(AddForm)

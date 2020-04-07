@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signIn } from '../Redux/actions/authAction'
+import { Redirect } from 'react-router-dom'
 
 
 export class LogIn extends Component {
@@ -12,10 +13,13 @@ export class LogIn extends Component {
     }
 
     render() {
+        const {auth, authError} = this.props
+        if(auth.uid) return <Redirect to='/'/>
+
         return (
             <form className='form_cus' onSubmit={this.handleSubmit}>
                 <div className='red text-center'>
-                        {this.props.authError? this.props.authError: null}
+                        {authError? authError: null}
                     </div>
                 <div className="form-group">
                     <label >Email address</label>

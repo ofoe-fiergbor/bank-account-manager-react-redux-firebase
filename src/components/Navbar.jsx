@@ -9,7 +9,7 @@ export class Navbar extends Component {
     render() {
         const {auth} = this.props
         
-        const link = (auth.uid) ? <LoggedInLinks/> : <LoggedOutLinks/>
+        const link = auth.uid ? <LoggedInLinks/> : <LoggedOutLinks/>
 
         return (
             <header>
@@ -26,7 +26,7 @@ export class Navbar extends Component {
     }
 }
 const mstp = state => {
-    console.log(state);
+    // console.log(state);
     return {
         auth: state.firebase.auth
     }
