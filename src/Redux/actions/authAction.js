@@ -59,3 +59,18 @@ export const signUp = (newUser) => {
             )
     }
 }
+export const authenticateWithGoogle=()=>{
+    return (dispatch, getState, {getFirebase})=>{
+        let firebase = getFirebase()
+        const provider  = new firebase.auth.GoogleAuthProvider()
+        firebase
+            .auth()
+            .signInWithPopup(provider)
+            .then((user)=>{
+                console.log(user)
+            })
+            .catch((e)=>{
+                console.log(e)
+            })
+    }
+}

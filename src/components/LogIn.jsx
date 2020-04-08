@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../Redux/actions/authAction'
+import { signIn, authenticateWithGoogle } from '../Redux/actions/authAction'
 import { Redirect } from 'react-router-dom'
 
 
@@ -13,7 +13,7 @@ export class LogIn extends Component {
     }
 
     render() {
-        const {auth, authError} = this.props
+        const {auth, authError, authenticateWithGoogle} = this.props
         if(auth.uid) return <Redirect to='/'/>
 
         return (
@@ -34,7 +34,7 @@ export class LogIn extends Component {
                     <button type="submit" className="btn btn-default btnCus">Login</button>
                     
                 </div>
-                <center><button className="btn btn-default btnCus btnc2 ">Login With Google</button></center>
+                <center><button className="btn btn-default btnCus btnc2 " onClick={authenticateWithGoogle}>Login With Google</button></center>
             </form>
         )
     }
@@ -47,4 +47,4 @@ const mstp = state=>{
     }
 }
 
-export default connect(mstp, {signIn})(LogIn)
+export default connect(mstp, {signIn, authenticateWithGoogle})(LogIn)
